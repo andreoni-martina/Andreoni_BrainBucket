@@ -1,0 +1,1252 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Brain Bucket — Skates & Repuestos</title>
+
+   
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+    
+      *, *::before, *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --verde:   #9AE66E;
+        --rosa:    #E891C8;
+        --negro:   #080808;
+        --gris1:   #111111;
+        --gris2:   #1a1a1a;
+        --gris3:   #333333;
+        --texto:   #f0f0f0;
+        --subtexto:#888888;
+        --borde:   rgba(255,255,255,0.08);
+        --fuente-titulo: 'Barlow Condensed', sans-serif;
+        --fuente-cuerpo: 'Inter', sans-serif;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        background-color: var(--negro);
+        color: var(--texto);
+        font-family: var(--fuente-cuerpo);
+        font-size: 16px;
+        line-height: 1.6;
+      }
+
+      img {
+        max-width: 100%;
+        display: block;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      ul {
+        list-style: none;
+      }
+
+
+      .contenedor {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+
+      .etiqueta {
+        display: inline-block;
+        font-family: var(--fuente-titulo);
+        font-size: 11px;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        margin-bottom: 12px;
+      }
+
+      .etiqueta--verde { color: var(--verde); }
+      .etiqueta--rosa  { color: var(--rosa);  }
+
+      .titulo-seccion {
+        font-family: var(--fuente-titulo);
+        font-weight: 800;
+        font-size: clamp(2.5rem, 5vw, 4rem);
+        line-height: 1;
+        text-transform: uppercase;
+        color: var(--texto);
+        margin-bottom: 16px;
+      }
+
+      .titulo-seccion span { color: var(--verde); }
+      .titulo-seccion span.rosa { color: var(--rosa); }
+
+      .boton {
+        display: inline-block;
+        font-family: var(--fuente-titulo);
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        padding: 14px 32px;
+        cursor: pointer;
+        transition: opacity 0.2s;
+      }
+
+      .boton:hover { opacity: 0.85; }
+
+      .boton--verde {
+        background-color: var(--verde);
+        color: var(--negro);
+      }
+
+      .boton--borde {
+        border: 1px solid rgba(255,255,255,0.2);
+        color: var(--texto);
+      }
+
+      .boton--borde:hover {
+        border-color: var(--verde);
+        color: var(--verde);
+        opacity: 1;
+      }
+
+    
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background-color: rgba(8, 8, 8, 0.92);
+        backdrop-filter: blur(16px);
+        border-bottom: 1px solid var(--borde);
+      }
+
+      .header__inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 64px;
+      }
+
+      .header__logo {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+
+      .header__logo h1 {
+        font-family: var(--fuente-titulo);
+        font-size: 28px;
+        font-weight: 900;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        line-height: 1;
+        color: var(--texto);
+      }
+
+      .header__logo h1 span { color: var(--verde); }
+
+      .header__subtitulo {
+        font-family: var(--fuente-titulo);
+        font-size: 10px;
+        letter-spacing: 0.35em;
+        text-transform: uppercase;
+        color: var(--verde);
+      }
+
+     
+      nav ul {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+
+      nav ul li a {
+        font-family: var(--fuente-titulo);
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--subtexto);
+        padding: 8px 16px;
+        transition: color 0.2s;
+      }
+
+      nav ul li a:hover { color: var(--verde); }
+
+      nav ul li.nav__cta a {
+        background-color: var(--verde);
+        color: var(--negro);
+        margin-left: 8px;
+      }
+
+      nav ul li.nav__cta a:hover {
+        opacity: 0.85;
+        color: var(--negro);
+      }
+
+     
+      #inicio {
+        position: relative;
+        min-height: 90vh;
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+      }
+
+      .hero__fondo {
+        position: absolute;
+        inset: 0;
+        background-image: url('https://images.unsplash.com/photo-1547198152-dde291a08c45?w=1400&h=900&fit=crop&auto=format');
+        background-size: cover;
+        background-position: center 30%;
+      }
+
+      .hero__overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to right, rgba(8,8,8,0.96) 45%, rgba(8,8,8,0.55) 100%);
+      }
+
+      .hero__linea {
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 3px;
+        background: linear-gradient(to bottom, transparent, #9AE66E, #E891C8, transparent);
+      }
+
+      .hero__contenido {
+        position: relative;
+        z-index: 1;
+        max-width: 600px;
+        padding: 80px 0;
+      }
+
+      .hero__titulo {
+        font-family: var(--fuente-titulo);
+        font-weight: 900;
+        font-size: clamp(4rem, 10vw, 8rem);
+        line-height: 0.95;
+        text-transform: uppercase;
+        color: var(--texto);
+        margin-bottom: 24px;
+      }
+
+      .hero__titulo span { color: var(--verde); display: block; }
+
+      .hero__descripcion {
+        font-size: 18px;
+        color: #aaaaaa;
+        max-width: 440px;
+        margin-bottom: 36px;
+        line-height: 1.7;
+      }
+
+      .hero__botones {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+
+    
+      #presentacion {
+        padding: 100px 0;
+      }
+
+      .presentacion__grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 64px;
+        align-items: center;
+      }
+
+      .presentacion__texto p {
+        color: #aaaaaa;
+        margin-bottom: 16px;
+        line-height: 1.8;
+      }
+
+      .presentacion__datos {
+        display: flex;
+        gap: 40px;
+        margin-top: 32px;
+        padding-top: 32px;
+        border-top: 1px solid var(--borde);
+      }
+
+      .presentacion__dato-num {
+        font-family: var(--fuente-titulo);
+        font-size: 2rem;
+        font-weight: 800;
+        color: var(--verde);
+      }
+
+      .presentacion__dato-num.rosa { color: var(--rosa); }
+
+      .presentacion__dato-label {
+        font-size: 12px;
+        color: var(--subtexto);
+        margin-top: 2px;
+        letter-spacing: 0.05em;
+      }
+
+      .presentacion__imagen {
+        position: relative;
+        height: 480px;
+      }
+
+      .presentacion__imagen img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .presentacion__badge {
+        position: absolute;
+        bottom: -16px;
+        left: -16px;
+        background-color: var(--verde);
+        padding: 16px 20px;
+      }
+
+      .presentacion__badge p {
+        font-family: var(--fuente-titulo);
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--negro);
+      }
+
+   
+      #informacion {
+        padding: 100px 0;
+        background-color: var(--gris1);
+      }
+
+      .info__cabecera {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        margin-bottom: 48px;
+        flex-wrap: wrap;
+        gap: 24px;
+      }
+
+      .info__grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1px;
+        background-color: var(--borde);
+      }
+
+      .info__tarjeta {
+        background-color: var(--gris1);
+        padding: 36px 32px;
+        transition: background-color 0.2s;
+      }
+
+      .info__tarjeta:hover { background-color: var(--gris2); }
+
+      .info__icono {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+      }
+
+      .info__tarjeta h3 {
+        font-family: var(--fuente-titulo);
+        font-size: 1.3rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: 12px;
+      }
+
+      .info__tarjeta p {
+        font-size: 14px;
+        color: #aaaaaa;
+        line-height: 1.7;
+      }
+
+     
+      #galeria {
+        padding: 100px 0;
+      }
+
+      .galeria__cabecera {
+        text-align: center;
+        margin-bottom: 48px;
+      }
+
+      .galeria__grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: auto auto;
+        gap: 8px;
+      }
+
+      .galeria__item {
+        overflow: hidden;
+        background-color: var(--gris2);
+      }
+
+      .galeria__item--grande {
+        grid-row: span 2;
+      }
+
+      .galeria__item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease, filter 0.5s ease;
+        min-height: 220px;
+      }
+
+      .galeria__item--grande img { min-height: 100%; }
+
+      .galeria__item:hover img {
+        transform: scale(1.05);
+        filter: brightness(1.1);
+      }
+
+      #curiosidades {
+        padding: 100px 0;
+        background-color: var(--gris1);
+      }
+
+      .curiosidades__grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1px;
+        background-color: var(--borde);
+        margin-bottom: 1px;
+      }
+
+      .curiosidades__tarjeta {
+        background-color: var(--gris1);
+        padding: 40px 32px;
+        transition: background-color 0.2s;
+      }
+
+      .curiosidades__tarjeta:hover { background-color: var(--gris2); }
+
+      .curiosidades__emoji {
+        font-size: 3rem;
+        margin-bottom: 20px;
+        display: block;
+      }
+
+      .curiosidades__tarjeta h3 {
+        font-family: var(--fuente-titulo);
+        font-size: 1.2rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: 12px;
+        color: var(--verde);
+      }
+
+      .curiosidades__tarjeta:nth-child(2) h3 { color: var(--rosa); }
+
+      .curiosidades__tarjeta p {
+        font-size: 14px;
+        color: #aaaaaa;
+        line-height: 1.7;
+      }
+
+     
+      .curiosidades__stat {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: var(--verde);
+        padding: 48px 40px;
+        flex-wrap: wrap;
+        gap: 24px;
+      }
+
+      .curiosidades__stat-num {
+        font-family: var(--fuente-titulo);
+        font-size: clamp(3rem, 8vw, 6rem);
+        font-weight: 900;
+        color: var(--negro);
+        line-height: 1;
+      }
+
+      .curiosidades__stat-desc {
+        font-size: 18px;
+        color: rgba(8,8,8,0.65);
+        max-width: 380px;
+        font-weight: 500;
+      }
+
+    
+      #enlaces {
+        padding: 100px 0;
+      }
+
+      .enlaces__cabecera {
+        text-align: center;
+        margin-bottom: 56px;
+      }
+
+      .enlaces__lista {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .enlaces__item {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        padding: 24px 28px;
+        border: 1px solid var(--borde);
+        background-color: var(--gris1);
+        transition: border-color 0.2s, background-color 0.2s;
+      }
+
+      .enlaces__item:hover {
+        border-color: var(--verde);
+        background-color: var(--gris2);
+      }
+
+      .enlaces__item:nth-child(even):hover {
+        border-color: var(--rosa);
+      }
+
+      .enlaces__icono {
+        font-size: 2rem;
+        flex-shrink: 0;
+      }
+
+      .enlaces__item h3 {
+        font-family: var(--fuente-titulo);
+        font-size: 1rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        margin-bottom: 4px;
+        color: var(--texto);
+      }
+
+      .enlaces__item p {
+        font-size: 13px;
+        color: var(--subtexto);
+        margin-bottom: 10px;
+      }
+
+      .enlaces__item a {
+        font-family: var(--fuente-titulo);
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--verde);
+        transition: opacity 0.2s;
+      }
+
+      .enlaces__item:nth-child(even) a { color: var(--rosa); }
+
+      .enlaces__item a:hover { opacity: 0.7; }
+
+     
+      footer {
+        background-color: #060606;
+        border-top: 1px solid var(--borde);
+      }
+
+      .footer__superior {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr;
+        gap: 48px;
+        padding: 64px 0 48px;
+        border-bottom: 1px solid var(--borde);
+      }
+
+      .footer__marca h2 {
+        font-family: var(--fuente-titulo);
+        font-size: 2rem;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--texto);
+        margin-bottom: 8px;
+      }
+
+      .footer__marca h2 span { color: var(--verde); }
+
+      .footer__marca p {
+        font-size: 14px;
+        color: var(--subtexto);
+        line-height: 1.7;
+        max-width: 300px;
+        margin-bottom: 24px;
+      }
+
+      .footer__redes {
+        display: flex;
+        gap: 8px;
+      }
+
+      .footer__red {
+        width: 36px;
+        height: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid var(--borde);
+        font-size: 14px;
+        color: var(--subtexto);
+        transition: border-color 0.2s, color 0.2s;
+      }
+
+      .footer__red:hover {
+        border-color: var(--verde);
+        color: var(--verde);
+      }
+
+      .footer__col h4 {
+        font-family: var(--fuente-titulo);
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        color: var(--verde);
+        margin-bottom: 20px;
+      }
+
+      .footer__col:nth-child(3) h4 { color: var(--rosa); }
+
+      .footer__col ul { list-style: none; }
+
+      .footer__col ul li {
+        margin-bottom: 10px;
+      }
+
+      .footer__col ul li a {
+        font-size: 14px;
+        color: var(--subtexto);
+        transition: color 0.2s;
+      }
+
+      .footer__col ul li a:hover { color: var(--texto); }
+
+  
+      .footer__inferior {
+        padding: 24px 0;
+      }
+
+      .footer__datos {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .footer__datos-estudiante {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 8px;
+        font-size: 13px;
+        color: #555;
+      }
+
+      .footer__datos-estudiante strong {
+        color: var(--verde);
+        font-family: var(--fuente-titulo);
+        font-size: 14px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .footer__datos-separador {
+        color: var(--gris3);
+      }
+
+      .footer__frase {
+        font-family: var(--fuente-titulo);
+        font-size: 14px;
+        font-style: italic;
+        letter-spacing: 0.08em;
+        color: var(--rosa);
+      }
+
+      .footer__copyright {
+        margin-top: 12px;
+        font-size: 12px;
+        color: #333;
+      }
+
+     
+      @media (max-width: 900px) {
+        nav ul { display: none; }
+
+        .presentacion__grid,
+        .info__grid,
+        .curiosidades__grid,
+        .footer__superior {
+          grid-template-columns: 1fr;
+        }
+
+        .galeria__grid {
+          grid-template-columns: 1fr 1fr;
+        }
+
+        .galeria__item--grande { grid-row: span 1; }
+
+        .enlaces__lista {
+          grid-template-columns: 1fr;
+        }
+
+        .footer__datos { flex-direction: column; align-items: flex-start; }
+      }
+
+      @media (max-width: 600px) {
+        .hero__titulo { font-size: 3.5rem; }
+        .galeria__grid { grid-template-columns: 1fr; }
+        .presentacion__datos { flex-direction: column; gap: 20px; }
+        .curiosidades__stat { flex-direction: column; }
+      }
+    </style>
+  </head>
+
+  <body>
+
+
+    <header>
+      <div class="contenedor header__inner">
+
+      
+        <div class="header__logo">
+          <h1>BRAIN<span>BUCKET</span></h1>
+          <span class="header__subtitulo">Skates &amp; Repuestos — Buenos Aires</span>
+        </div>
+
+        <nav>
+          <ul>
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#informacion">Información</a></li>
+            <li><a href="#galeria">Galería</a></li>
+            <li><a href="#curiosidades">Curiosidades</a></li>
+            <li class="nav__cta"><a href="#contacto">Contacto</a></li>
+          </ul>
+        </nav>
+
+      </div>
+    </header>
+
+
+   
+    <main>
+
+      <section id="inicio">
+        <div class="hero__fondo"></div>
+        <div class="hero__overlay"></div>
+        <div class="hero__linea"></div>
+
+        <div class="contenedor">
+          <div class="hero__contenido">
+            <span class="etiqueta etiqueta--verde">— Cultura Urbana Desde 2016 —</span>
+
+            <h2 class="hero__titulo">
+              BRAIN
+              <span>BUCKET</span>
+            </h2>
+
+            <p class="hero__descripcion">
+              Skates, repuestos y accesorios para quienes piensan diferente.
+              Nacimos en Buenos Aires para llevar la cultura del skate a otro nivel.
+              Protegé tu cabeza, liberá tu creatividad.
+            </p>
+
+            <div class="hero__botones">
+              <a href="#informacion" class="boton boton--verde">Ver Información</a>
+              <a href="#galeria" class="boton boton--borde">Ver Galería</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+     
+      <section id="presentacion">
+        <div class="contenedor">
+          <div class="presentacion__grid">
+
+           
+            <div class="presentacion__texto">
+              <span class="etiqueta etiqueta--rosa">Nuestra historia</span>
+              <h2 class="titulo-seccion">
+                SKATE CON<br>
+                <span>INTELIGENCIA</span>
+              </h2>
+              <p>
+                BRAIN BUCKET nació en 2016 en Buenos Aires con una misión clara:
+                democratizar la cultura skate en Argentina. Creemos que el skate
+                es más que un deporte, es una forma de ver el mundo, de resolver
+                problemas y de expresarse sin límites.
+              </p>
+              <p>
+                Nuestro nombre lo dice todo: el cerebro representa la creatividad
+                y la estrategia, el casco representa la protección y la seguridad.
+                En la cultura skate, "bucket" es el término para el casco. Somos
+                una marca pensada por skaters, para skaters.
+              </p>
+              <p>
+                Curated por skaters locales, nuestro catálogo combina marcas
+                internacionales con colecciones exclusivas diseñadas por artistas
+                de Buenos Aires. El verde neón y el rosa son nuestros colores:
+                visibilidad, energía y actitud urbana.
+              </p>
+
+              <div class="presentacion__datos">
+                <div>
+                  <div class="presentacion__dato-num">2.400+</div>
+                  <div class="presentacion__dato-label">Clientes activos</div>
+                </div>
+                <div>
+                  <div class="presentacion__dato-num rosa">4 locales</div>
+                  <div class="presentacion__dato-label">En Argentina</div>
+                </div>
+                <div>
+                  <div class="presentacion__dato-num">8 años</div>
+                  <div class="presentacion__dato-label">En la cultura skate</div>
+                </div>
+              </div>
+            </div>
+
+           
+            <div class="presentacion__imagen">
+              <img
+                src="https://images.unsplash.com/photo-1760897225526-bd541aa08ddf?w=700&h=900&fit=crop&auto=format"
+                alt="Skater en calle urbana de Buenos Aires al atardecer"
+              />
+              <div class="presentacion__badge">
+                <p>🧠 Diseñado por skaters</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+
+    
+      <section id="informacion">
+        <div class="contenedor">
+          <div class="info__cabecera">
+            <div>
+              <span class="etiqueta etiqueta--verde">Lo que ofrecemos</span>
+              <h2 class="titulo-seccion">
+                NUESTROS<br>
+                <span class="rosa">PRODUCTOS</span>
+              </h2>
+            </div>
+            <a href="#galeria" class="boton boton--borde">Ver galería →</a>
+          </div>
+
+          <div class="info__grid">
+
+            <div class="info__tarjeta">
+              <div class="info__icono">🛹</div>
+              <h3>Tablas &amp; Skates Completos</h3>
+              <p>
+                Desde tablas de iniciación hasta decks pro con gráficas de artistas
+                locales. Tenemos el setup perfecto para cada nivel y estilo.
+                Modelos desde $45.990 hasta $150.000.
+              </p>
+            </div>
+
+            <div class="info__tarjeta">
+              <div class="info__icono">⚙️</div>
+              <h3>Repuestos y Ruedas</h3>
+              <p>
+                Trucks, ruedas, rodamientos y lijas para mantener tu tabla en
+                perfecto estado. Marcas como Independent, Spitfire, Bones y
+                nuestras propias ruedas Hardcover.
+              </p>
+            </div>
+
+            <div class="info__tarjeta">
+              <div class="info__icono">🪖</div>
+              <h3>Protección</h3>
+              <p>
+                Cascos, rodilleras y coderas para patinar con confianza.
+                La seguridad no es opcional: nuestro casco Brain Bucket
+                cumple normas ASTM y CE con diseños únicos.
+              </p>
+            </div>
+
+            <div class="info__tarjeta">
+              <div class="info__icono">👕</div>
+              <h3>Ropa &amp; Accesorios</h3>
+              <p>
+                Remeras, gorros, medias y mochilas con el estilo urbano de
+                la marca. Colaboraciones exclusivas con artistas y estudios
+                de diseño de Buenos Aires y CABA.
+              </p>
+            </div>
+
+            <div class="info__tarjeta">
+              <div class="info__icono">🎨</div>
+              <h3>Arte en Cada Tabla</h3>
+              <p>
+                Cada colección Brain Bucket es una colaboración con artistas
+                locales. El arte urbano, el graffiti y la cultura visual de
+                Buenos Aires inspiran cada gráfica.
+              </p>
+            </div>
+
+            <div class="info__tarjeta">
+              <div class="info__icono">🚚</div>
+              <h3>Envíos a Todo el País</h3>
+              <p>
+                Comprá online y recibí en tu puerta en 48 a 72 horas.
+                Envío gratis en compras mayores a $30.000.
+                Retiro en nuestros 4 locales de Buenos Aires.
+              </p>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+
+    
+      <section id="galeria">
+        <div class="contenedor">
+          <div class="galeria__cabecera">
+            <span class="etiqueta etiqueta--rosa">Galería</span>
+            <h2 class="titulo-seccion">
+              VIVIR EL <span>SKATE</span>
+            </h2>
+            <p style="color: #aaaaaa; max-width: 500px; margin: 12px auto 0;">
+              Imágenes de la comunidad skate, nuestros productos y el espíritu urbano que nos mueve.
+            </p>
+          </div>
+
+          <div class="galeria__grid">
+
+            <div class="galeria__item galeria__item--grande">
+              <img
+                src="https://images.unsplash.com/photo-1547198152-dde291a08c45?w=700&h=900&fit=crop&auto=format"
+                alt="Skater ejecutando trick espectacular en el aire"
+              />
+            </div>
+
+           
+            <div class="galeria__item">
+              <img
+                src="https://images.unsplash.com/photo-1765875439502-f9214fe2ff5d?w=700&h=500&fit=crop&auto=format"
+                alt="Skateboarder frente a edificios modernos de la ciudad"
+              />
+            </div>
+
+            <div class="galeria__item">
+              <img
+                src="https://images.unsplash.com/photo-1785836521095-56b8b3d49e84?w=700&h=500&fit=crop&auto=format"
+                alt="Skater practicando en entorno urbano histórico"
+              />
+            </div>
+
+            <div class="galeria__item">
+              <img
+                src="https://images.unsplash.com/photo-1763044936741-49b01fa8885b?w=700&h=500&fit=crop&auto=format"
+                alt="Skater saltando sobre obstáculo urbano de noche"
+              />
+            </div>
+
+            <div class="galeria__item">
+              <img
+                src="https://images.unsplash.com/photo-1770429953076-1ccbb84996d5?w=700&h=500&fit=crop&auto=format"
+                alt="Persona practicando skate en calle soleada"
+              />
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+
+     
+      <section id="curiosidades">
+        <div class="contenedor">
+          <span class="etiqueta etiqueta--verde">¿Sabías que...?</span>
+          <h2 class="titulo-seccion">
+            DATOS Y <span class="rosa">CURIOSIDADES</span>
+          </h2>
+          <br>
+
+          <div class="curiosidades__grid">
+
+            <div class="curiosidades__tarjeta">
+              <span class="curiosidades__emoji">🧠</span>
+              <h3>¿Por qué Brain Bucket?</h3>
+              <p>
+                El nombre combina cerebro (creatividad y estrategia) con casco.
+                En la jerga skate anglosajona, "bucket" es sinónimo de casco.
+                La marca nació para skaters que piensan antes de tirar el truco.
+              </p>
+            </div>
+
+            <div class="curiosidades__tarjeta">
+              <span class="curiosidades__emoji">🛹</span>
+              <h3>Historia del Skate</h3>
+              <p>
+                El skateboarding nació en California, EE.UU., a fines de los
+                años 50 como alternativa al surf en tierra firme. Llegó a
+                Argentina en los años 80 y hoy tiene una comunidad enorme en
+                Buenos Aires y todo el país.
+              </p>
+            </div>
+
+            <div class="curiosidades__tarjeta">
+              <span class="curiosidades__emoji">🏅</span>
+              <h3>Deporte Olímpico</h3>
+              <p>
+                El skateboarding debutó como deporte olímpico en Tokio 2020.
+                Argentina participó con skaters jóvenes que representaron la
+                nueva generación de la disciplina a nivel mundial.
+              </p>
+            </div>
+
+          </div>
+
+          
+          <div class="curiosidades__stat">
+            <div>
+              <div class="curiosidades__stat-num">500M+</div>
+              <div class="curiosidades__stat-desc">
+                de skaters activos en todo el mundo, según la Federación
+                Mundial de Skateboarding (World Skate Federation).
+              </div>
+            </div>
+            <div style="font-size: 5rem;">🌍</div>
+          </div>
+
+        </div>
+      </section>
+
+
+   
+      <section id="enlaces">
+        <div class="contenedor">
+          <div class="enlaces__cabecera">
+            <span class="etiqueta etiqueta--rosa">Más contenido</span>
+            <h2 class="titulo-seccion">
+              ENLACES <span>EXTERNOS</span>
+            </h2>
+            <p style="color: #aaaaaa; max-width: 480px; margin: 12px auto 0;">
+              Recursos, redes y sitios oficiales para seguir explorando la cultura skate.
+            </p>
+          </div>
+
+       
+          <ul class="enlaces__lista">
+
+            <li class="enlaces__item">
+              <span class="enlaces__icono">▶️</span>
+              <div>
+                <h3>YouTube — Skate Argentina</h3>
+                <p>Videos de trucos, spots y eventos del skate local e internacional.</p>
+                <a href="https://www.youtube.com/results?search_query=skate+argentina" target="_blank" rel="noopener">
+                  Ir a YouTube →
+                </a>
+              </div>
+            </li>
+
+            <li class="enlaces__item">
+              <span class="enlaces__icono">📸</span>
+              <div>
+                <h3>Instagram — @brainbucketba</h3>
+                <p>Seguinos en Instagram para ver los últimos drops y contenido de la comunidad.</p>
+                <a href="https://www.instagram.com" target="_blank" rel="noopener">
+                  Ir a Instagram →
+                </a>
+              </div>
+            </li>
+
+            <li class="enlaces__item">
+              <span class="enlaces__icono">🏅</span>
+              <div>
+                <h3>World Skate Federation</h3>
+                <p>Organismo oficial del skateboarding olímpico. Rankings, eventos y noticias mundiales.</p>
+                <a href="https://www.worldskate.org" target="_blank" rel="noopener">
+                  Ir a World Skate →
+                </a>
+              </div>
+            </li>
+
+            <li class="enlaces__item">
+              <span class="enlaces__icono">📖</span>
+              <div>
+                <h3>Wikipedia — Skateboarding</h3>
+                <p>Historia completa del skateboarding, su evolución y su llegada a los Juegos Olímpicos.</p>
+                <a href="https://es.wikipedia.org/wiki/Skateboarding" target="_blank" rel="noopener">
+                  Ir a Wikipedia →
+                </a>
+              </div>
+            </li>
+
+          </ul>
+        </div>
+      </section>
+
+
+     
+      <section id="contacto" style="padding: 100px 0; background-color: #0c0c0c;">
+        <div class="contenedor">
+          <span class="etiqueta etiqueta--verde">Contacto</span>
+          <h2 class="titulo-seccion">
+            HABLEMOS<br>
+            <span class="rosa">DEL SKATE</span>
+          </h2>
+          <br>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start;">
+
+            <div>
+              <p style="color: #aaaaaa; line-height: 1.8; margin-bottom: 32px;">
+                ¿Tenés preguntas sobre productos, envíos o querés ser parte de la
+                comunidad Brain Bucket? Escribinos y te respondemos en menos de 24hs.
+              </p>
+
+              <ul style="list-style: none; space-y: 16px;">
+                <li style="display:flex; gap:16px; padding:14px 0; border-bottom:1px solid rgba(255,255,255,0.06);">
+                  <span style="color:#555; font-size:13px; text-transform:uppercase; letter-spacing:0.1em; width:90px; padding-top:2px;">Email</span>
+                  <span style="color:#ccc;">hola@brainbucket.com.ar</span>
+                </li>
+                <li style="display:flex; gap:16px; padding:14px 0; border-bottom:1px solid rgba(255,255,255,0.06);">
+                  <span style="color:#555; font-size:13px; text-transform:uppercase; letter-spacing:0.1em; width:90px; padding-top:2px;">WhatsApp</span>
+                  <span style="color:#ccc;">+54 11 1234-5678</span>
+                </li>
+                <li style="display:flex; gap:16px; padding:14px 0; border-bottom:1px solid rgba(255,255,255,0.06);">
+                  <span style="color:#555; font-size:13px; text-transform:uppercase; letter-spacing:0.1em; width:90px; padding-top:2px;">Dirección</span>
+                  <span style="color:#ccc;">Av. Corrientes 1234, CABA, Argentina</span>
+                </li>
+                <li style="display:flex; gap:16px; padding:14px 0;">
+                  <span style="color:#555; font-size:13px; text-transform:uppercase; letter-spacing:0.1em; width:90px; padding-top:2px;">Horario</span>
+                  <span style="color:#ccc;">Lunes a Viernes 10:00 a 19:00 hs</span>
+                </li>
+              </ul>
+            </div>
+
+            <form style="display:flex; flex-direction:column; gap:16px;">
+              <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+                <div>
+                  <label style="display:block; font-size:11px; text-transform:uppercase; letter-spacing:0.15em; color:#555; margin-bottom:8px;">Nombre</label>
+                  <input type="text" placeholder="Tu nombre" style="width:100%; background:transparent; border:1px solid rgba(255,255,255,0.1); color:#f0f0f0; padding:12px 14px; font-size:14px; outline:none;" />
+                </div>
+                <div>
+                  <label style="display:block; font-size:11px; text-transform:uppercase; letter-spacing:0.15em; color:#555; margin-bottom:8px;">Email</label>
+                  <input type="email" placeholder="tu@email.com" style="width:100%; background:transparent; border:1px solid rgba(255,255,255,0.1); color:#f0f0f0; padding:12px 14px; font-size:14px; outline:none;" />
+                </div>
+              </div>
+              <div>
+                <label style="display:block; font-size:11px; text-transform:uppercase; letter-spacing:0.15em; color:#555; margin-bottom:8px;">Mensaje</label>
+                <textarea rows="5" placeholder="¿En qué podemos ayudarte?" style="width:100%; background:transparent; border:1px solid rgba(255,255,255,0.1); color:#f0f0f0; padding:12px 14px; font-size:14px; outline:none; resize:vertical;"></textarea>
+              </div>
+              <button type="submit" class="boton boton--verde" style="border:none; cursor:pointer;">
+                Enviar Mensaje
+              </button>
+            </form>
+
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+
+
+    <footer>
+      <div class="contenedor">
+
+      
+        <div class="footer__superior">
+
+          <div class="footer__marca">
+            <h2>BRAIN<span>BUCKET</span></h2>
+            <p>Skates, repuestos y cultura urbana desde Buenos Aires, Argentina. Para quienes piensan diferente.</p>
+            <div class="footer__redes">
+              <a href="https://www.instagram.com" target="_blank" rel="noopener" class="footer__red" title="Instagram">IG</a>
+              <a href="https://www.youtube.com" target="_blank" rel="noopener" class="footer__red" title="YouTube">YT</a>
+              <a href="https://www.twitter.com" target="_blank" rel="noopener" class="footer__red" title="Twitter / X">X</a>
+            </div>
+          </div>
+
+        
+          <div class="footer__col">
+            <h4>Tienda</h4>
+            <ul>
+              <li><a href="#informacion">Tablas &amp; Skates</a></li>
+              <li><a href="#informacion">Ruedas</a></li>
+              <li><a href="#informacion">Trucks</a></li>
+              <li><a href="#informacion">Protección</a></li>
+              <li><a href="#informacion">Ropa</a></li>
+              <li><a href="#informacion">Accesorios</a></li>
+            </ul>
+          </div>
+
+         
+          <div class="footer__col">
+            <h4>Información</h4>
+            <ul>
+              <li><a href="#presentacion">Sobre nosotros</a></li>
+              <li><a href="#curiosidades">Curiosidades</a></li>
+              <li><a href="#galeria">Galería</a></li>
+              <li><a href="#enlaces">Links externos</a></li>
+              <li><a href="#contacto">Contacto</a></li>
+            </ul>
+          </div>
+
+        </div>
+
+    
+        <div class="footer__inferior">
+          <div class="footer__datos">
+
+            <div class="footer__datos-estudiante">
+              <strong>Andreoni Martina</strong>
+              <span class="footer__datos-separador">|</span>
+              <span>Curso: <strong style="color:#ccc;">3CSTC</strong></span>
+              <span class="footer__datos-separador">|</span>
+              <span>Año: <strong style="color:#ccc;">2026</strong></span>
+              <span class="footer__datos-separador">|</span>
+              <span>Brain Bucket — Diseño Web</span>
+            </div>
+
+            <p class="footer__frase">"Protegé tus ideas, viví el skate."</p>
+
+          </div>
+
+          <p class="footer__copyright">
+            &copy; 2026 Brain Bucket. Trabajo práctico de Diseño y Desarrollo Web.
+            Todos los derechos reservados.
+          </p>
+        </div>
+
+      </div>
+    </footer>
+
+  </body>
+</html>
