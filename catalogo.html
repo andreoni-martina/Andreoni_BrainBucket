@@ -1,0 +1,147 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catálogo completo — Brain Bucket</title>
+  <meta name="description" content="Todos los productos de Brain Bucket en un solo lugar.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=Barlow+Condensed:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.cdnfonts.com/css/melted-monster" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="top">
+  <input type="checkbox" id="menu" class="sr" aria-label="Abrir menú">
+  <div class="wrap bar">
+    <a class="brand" href="index.html">
+      <img src="imagenes/logo-blanco.png" alt="Brain Bucket" height="36">
+      <span class="cond">Skates &amp; Repuestos</span>
+    </a>
+    <nav class="links">
+          <a class="cond" href="index.html#inicio">Inicio</a>
+          <a class="cond" href="index.html#tienda">Tienda</a>
+          <a class="cond" href="index.html#galeria">Galería</a>
+          <a class="cond" href="index.html#contacto">Contacto</a>
+      <a class="btn btn-green cond nav-cta" href="catalogo.html">Ver Tienda</a>
+    </nav>
+    <div class="actions">
+      <button type="button" class="cart open-cart" aria-label="Abrir carrito">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+        <span class="cond">CARRITO</span> <span class="cart-count">0</span>
+      </button>
+      <label for="menu" class="burger" aria-label="Abrir menú">☰</label>
+    </div>
+  </div>
+</header>
+
+<main class="catalog wrap">
+  <p class="eyebrow cond g">Brain Bucket / Tienda online</p>
+  <h1 class="title cond xl">CATÁLOGO <span class="p">COMPLETO</span></h1>
+  <p class="text-sm">Todos nuestros productos, en un solo lugar. Encontrá tu próximo setup.</p>
+
+  <div class="search-box">
+    <label class="sr" for="buscar">Buscar productos</label>
+    <input type="search" id="buscar" placeholder="Buscar productos…" autocomplete="off">
+  </div>
+
+  <input class="sr" type="radio" name="cat" id="c-todos" checked>
+  <input class="sr" type="radio" name="cat" id="c-proteccion">
+  <input class="sr" type="radio" name="cat" id="c-ruedas">
+  <input class="sr" type="radio" name="cat" id="c-indumentaria">
+  <input class="sr" type="radio" name="cat" id="c-skates-completos">
+
+  <div class="filters" role="group" aria-label="Filtrar por categoría">
+    <label for="c-todos">Todos</label>
+    <label for="c-proteccion">Protección</label>
+    <label for="c-ruedas">Ruedas</label>
+    <label for="c-indumentaria">Indumentaria</label>
+    <label for="c-skates-completos">Skates completos</label>
+  </div>
+
+  <div class="grid">
+    <article class="card green" data-cat="Protección">
+      <div class="card-img"><img src="https://endeavordesigninc.com/cdn/shop/files/sandbox_icon-brain-bucket-mips-yuto_1.jpg?v=1789540041&width=1200" alt="Casco Brain Bucket MIPS en color verde" loading="lazy"></div>
+      <span class="tag cond">Recomendado</span>
+      <div class="card-body">
+        <p class="cat">Protección</p>
+        <h3>Casco Brain Bucket MIPS</h3>
+        <p class="price cond">$159.000</p>
+      </div>
+      <button class="card-btn cond add-cart" type="button" aria-label="Agregar Casco Brain Bucket MIPS al carrito">AGREGAR AL CARRITO</button>
+    </article>
+    <article class="card pink" data-cat="Ruedas">
+      <div class="card-img"><img src="https://www.malibustore.cl/wp-content/uploads/2020/12/rs_1.jpg" alt="Set de ruedas Spitfire Formula Four verdes de 52 milímetros" loading="lazy"></div>
+      <span class="tag cond">Top ventas</span>
+      <div class="card-body">
+        <p class="cat">Ruedas</p>
+        <h3>Spitfire Formula Four 52mm</h3>
+        <p class="price cond">$32.990</p>
+      </div>
+      <button class="card-btn cond add-cart" type="button" aria-label="Agregar Spitfire Formula Four 52mm al carrito">AGREGAR AL CARRITO</button>
+    </article>
+    <article class="card green" data-cat="Indumentaria">
+      <div class="card-img"><img src="https://boraborastore.com.ar/wp-content/uploads/2026/02/BBS2600859-600x600.webp" alt="Camisa Billabong Vacay Etnic" loading="lazy"></div>
+      <span class="tag cond">Nuevo</span>
+      <div class="card-body">
+        <p class="cat">Indumentaria</p>
+        <h3>Camisa Billabong Vacay Etnic</h3>
+        <p class="price cond">$48.990</p>
+      </div>
+      <button class="card-btn cond add-cart" type="button" aria-label="Agregar Camisa Billabong Vacay Etnic al carrito">AGREGAR AL CARRITO</button>
+    </article>
+    <article class="card pink" data-cat="Indumentaria">
+      <div class="card-img"><img src="https://boraborastore.com.ar/wp-content/uploads/2023/06/BBW2201099-600x600.webp" alt="Campera canguro Volcom Yzzolater" loading="lazy"></div>
+      <span class="tag cond">Streetwear</span>
+      <div class="card-body">
+        <p class="cat">Indumentaria</p>
+        <h3>Campera Volcom Yzzolater</h3>
+        <p class="price cond">$74.990</p>
+      </div>
+      <button class="card-btn cond add-cart" type="button" aria-label="Agregar Campera Volcom Yzzolater al carrito">AGREGAR AL CARRITO</button>
+    </article>
+    <article class="card green" data-cat="Skates completos">
+      <div class="card-img"><img src="https://boraborastore.com.ar/wp-content/uploads/2022/05/skate-hatched-red-blue-1.jpg" alt="Skate completo Element Hatched en rojo y azul" loading="lazy"></div>
+      <span class="tag cond">Pro setup</span>
+      <div class="card-body">
+        <p class="cat">Skates completos</p>
+        <h3>Element Hatched Red Blue 8”</h3>
+        <p class="price cond">$129.990</p>
+      </div>
+      <button class="card-btn cond add-cart" type="button" aria-label="Agregar Element Hatched Red Blue 8” al carrito">AGREGAR AL CARRITO</button>
+    </article>
+    <article class="card pink" data-cat="Skates completos">
+      <div class="card-img"><img src="https://d22fxaf9t8d39k.cloudfront.net/bd742d1fd8aae3bf066d7a844cae4810edd3c882cb54efbd2c1ffffe484a3be8153817.jpg" alt="Skate profesional Tuxs Maple Premium diseño Honguitos" loading="lazy"></div>
+      <span class="tag cond">Hecho acá</span>
+      <div class="card-body">
+        <p class="cat">Skates completos</p>
+        <h3>Tuxs Maple Premium Honguitos</h3>
+        <p class="price cond">$96.500</p>
+      </div>
+      <button class="card-btn cond add-cart" type="button" aria-label="Agregar Tuxs Maple Premium Honguitos al carrito">AGREGAR AL CARRITO</button>
+    </article>
+    <article class="card green" data-cat="Skates completos">
+      <div class="card-img"><img src="https://boraborastore.com.ar/wp-content/uploads/2022/11/BBW2201054-1.webp" alt="Skate completo Santa Cruz Screaming Hand de 8 pulgadas" loading="lazy"></div>
+      <span class="tag cond">Icónico</span>
+      <div class="card-body">
+        <p class="cat">Skates completos</p>
+        <h3>Santa Cruz Screaming Hand 8”</h3>
+        <p class="price cond">$149.990</p>
+      </div>
+      <button class="card-btn cond add-cart" type="button" aria-label="Agregar Santa Cruz Screaming Hand 8” al carrito">AGREGAR AL CARRITO</button>
+    </article>
+    <article class="card pink" data-cat="Skates completos">
+      <div class="card-img"><img src="https://www.skatemarket.cl/wp-content/uploads/2025/12/skate-completo_Santa-Cruz-%E2%80%93-Screaming-Hand-7.8-x-31.0.webp" alt="Skate completo Santa Cruz Screaming Hand rosa de 7.8 pulgadas" loading="lazy"></div>
+      <span class="tag cond">Edición rosa</span>
+      <div class="card-body">
+        <p class="cat">Skates completos</p>
+        <h3>Santa Cruz Screaming Hand 7.8”</h3>
+        <p class="price cond">$139.990</p>
+      </div>
+      <button class="card-btn cond add-cart" type="button" aria-label="Agregar Santa Cruz Screaming Hand 7.8” al carrito">AGREGAR AL CARRITO</button>
+    </article>
+  </div>
+</main>
+<script src="script.js"></script>
+</body>
+</html>
